@@ -2,7 +2,6 @@
 
 @Authors: Akshat Bordia (akshat.bordia@citrix.com) and Neha Joshi (neha.joshi@citrix.com)
 **/
-
 nlp = window.nlp_compromise;
 
 var messages = [], //array that hold the record of each string in chat
@@ -15,34 +14,25 @@ var messages = [], //array that hold the record of each string in chat
   action = "";
 //edit this function to change what the chatbot says
 function chatbotResponse() {
-  
-
-  /***
-  Your code goes here:
-  1. Create API URL for API.AI
-  2. Create http request
-  3. Open GET request
-  4. Set Reqest header for Authorization
-  5. Send Request
-
-  **/
+  var url = "https://api.dialogflow.com/v1/query?v=20150910&lang=en&query="+encodeURI(lastUserMessage)+"&sessionId=12345"
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("GET", url, true);
+  xhttp.setRequestHeader("Authorization", "Bearer 7de585ea37764c8eafb48fc3ad6991a6");
+  xhttp.send();
 
 
   xhttp.onreadystatechange = function() {
   if (this.readyState == 4 && this.status == 200) {
        // Typical action to be performed when the document is ready:
+        console.log(xhttp.response);
+        response = JSON.parse(xhttp.response)["result"]
 
-    /***
-     Your code goes here:
-    Fill this section to parse xhttp.response and extract speech result
+        botMessage = response["fulfillment"]["speech"]
 
-    1. Log xhttp.response to see the type
-    2. Parse xhttp.response and extract results from it
-    3. Extract speech from fulfillment of response
-    4. Log message for debugging
-    5. Convert to speech
-
-    **/
+        console.log(botMessage)
+        Speech(botMessage);
+    //outputs the last few array elements of messages to html
+    //document.getElementById("chatlog" + i).innerHTML = messages[messages.length - i];
 
     var node1 = document.createElement('div');
     node1.className = 'bot';
@@ -60,7 +50,7 @@ function chatbotResponse() {
       callZomato(response)}
     }
   };
-
+  
 }
 
 function callZomato(response){
@@ -75,12 +65,9 @@ function callZomato(response){
     var zomato_url = "https://developers.zomato.com/api/v2.1/search?entity_id="+ city_id + "&entity_type=" + entity_type + "&q=" + encodedArea
     //var zomato_url2 = "https://developers.zomato.com/api/v2.1/search?entity_id=4&entity_type=city&q=MG%20Road"
     xhttp.open("GET",zomato_url , true);
-    /**
-    Insert your Zomato Developer key here
-    **/
-    xhttp.setRequestHeader("user-key", "");
+    xhttp.setRequestHeader("user-key", "1ef15fec260d6ff41776d0294867d8d1");
     xhttp.send();
-    
+    //var response = JSON.parse(xhttp.responseText.substring(1, xhttp.responseText.length-1));
     var restaurants;
     xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
@@ -123,6 +110,7 @@ function callZomato(response){
   }
 
 
+//Storing City IDs
 
   }
 
@@ -156,7 +144,7 @@ function newEntry() {
     chatmessage.appendChild(node);
     chatmessage.appendChild(document.createElement('br'));
     chatmessage.appendChild(document.createElement('br'));
-    chatmessage.appendChild(document.createElement('br'));
+     chatmessage.appendChild(document.createElement('br'));
 
 
     //adds the value of the chatbox to the array messages
@@ -177,6 +165,13 @@ function newEntry() {
 function Speech(say) {
   if ('speechSynthesis' in window && talking) {
     var utterance = new SpeechSynthesisUtterance(say);
+    //msg.voice = voices[10]; // Note: some voices don't support altering params
+    //msg.voiceURI = 'native';
+    //utterance.volume = 1; // 0 to 1
+    //utterance.rate = 0.1; // 0.1 to 10
+    //utterance.pitch = 1; //0 to 2
+    //utterance.text = 'Hello World';
+    //utterance.lang = 'en-US';
     speechSynthesis.speak(utterance);
   }
 }
@@ -193,7 +188,7 @@ function keyPress(e) {
   }
   if (key == 38) {
     console.log('hi')
-      //document.getElement ById("chatbox").value = lastUserMessage;
+      //document.getElementById("chatbox").value = lastUserMessage;
   }
 }
 
