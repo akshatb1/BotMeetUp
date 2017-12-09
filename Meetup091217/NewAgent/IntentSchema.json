@@ -1,0 +1,22 @@
+{
+  "intents": [
+    {
+      "intent": "Findrestaurants",
+      "slots": [
+        {
+          "name": "cityslot",
+          "type": "CITY"
+        }
+      ]
+    },
+    {
+      "intent": "AreaIsMgRoad",
+      "slots": [
+        {
+          "name": "areaslot",
+          "type": "AREA"
+        }
+      ]
+    }
+  ]
+}

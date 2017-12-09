@@ -1,0 +1,9 @@
+Findrestaurants	find me some restaurant in {cityslot}
+Findrestaurants	find me some restaurants in {cityslot}
+Findrestaurants	please find restaurant in {cityslot}
+Findrestaurants	please find restaurants in {cityslot}
+Findrestaurants	show me restaurant in {cityslot}
+Findrestaurants	show me restaurants in {cityslot}
+AreaIsMgRoad	area is {areaslot}
+AreaIsMgRoad	please find in {areaslot}
+AreaIsMgRoad	the area is {areaslot}
