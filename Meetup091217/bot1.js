@@ -12,12 +12,16 @@ var messages = [], //array that hold the record of each string in chat
   chatmessage = null;
   response = null;
   action = "";
+//add zomato token
+ var zomatoApiToke = "";
+//add dialogflow token
+var dialogflowToken = "";
 //edit this function to change what the chatbot says
 function chatbotResponse() {
   var url = "https://api.dialogflow.com/v1/query?v=20150910&lang=en&query="+encodeURI(lastUserMessage)+"&sessionId=12345"
   var xhttp = new XMLHttpRequest();
   xhttp.open("GET", url, true);
-  xhttp.setRequestHeader("Authorization", "Bearer 7de585ea37764c8eafb48fc3ad6991a6");
+  xhttp.setRequestHeader("Authorization", "Bearer " + dialogflowToken);
   xhttp.send();
 
 
@@ -65,7 +69,7 @@ function callZomato(response){
     var zomato_url = "https://developers.zomato.com/api/v2.1/search?entity_id="+ city_id + "&entity_type=" + entity_type + "&q=" + encodedArea
     //var zomato_url2 = "https://developers.zomato.com/api/v2.1/search?entity_id=4&entity_type=city&q=MG%20Road"
     xhttp.open("GET",zomato_url , true);
-    xhttp.setRequestHeader("user-key", "1ef15fec260d6ff41776d0294867d8d1");
+    xhttp.setRequestHeader("user-key", zomatoApiToke);
     xhttp.send();
     //var response = JSON.parse(xhttp.responseText.substring(1, xhttp.responseText.length-1));
     var restaurants;
