@@ -1,0 +1,92 @@
+/**
+
+@Authors: Akshat Bordia (akshat.bordia@citrix.com) and Neha Joshi (neha.joshi@citrix.com)
+**/
+
+.overall {
+
+background-color: white; 
+position: absolute;
+top: 50%;
+left: 50%;
+margin-top: -200px;
+margin-left: -270px;
+height: 60%;
+width: 50%;
+border-style: solid;
+border-width: 1px;
+
+}
+
+#chatmessage
+{
+max-height: 100%;
+    overflow: scroll;
+    position: absolute;
+    bottom: 25px;
+    top: 30px;
+    left: 0px;
+    right: 0px;
+}
+
+
+.head 
+{
+	position: relative;
+	height: 30px;
+	background-color: #373131;
+	color: white;
+	text-align: left;
+
+}
+
+.bot
+{
+	position: absolute;
+	display: inline-block;
+	align: left;
+	left: 5px;
+	background-color: #88D76C;
+	width: auto;
+	border-radius: 10px;
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 10px;
+	color: white;
+
+}
+
+.user
+{
+	position: absolute;
+	display: inline-block;
+	align: right;
+	right: 5px;
+	background-color: #D4D9D2;
+	width: auto;
+	border-radius: 10px; 
+	font-family: Arial, Helvetica, sans-serif;
+	padding: 10px;
+}
+
+img
+{
+
+	width: 20px;
+	height: 20px;
+
+}
+#chatbox
+{
+
+	position: absolute;
+	width: 100%;
+	bottom: 0;
+	margin: 0 auto;
+	background-color: white;
+	height: 20px;
+	border-style: solid;
+	border-width: 1px; 
+	font-family: Arial, Helvetica, sans-serif;
+
+}
+
